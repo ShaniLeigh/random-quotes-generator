@@ -4,12 +4,14 @@ Created on Thu Sep 11 10:24:27 2025
 Random Quote Generator
 @author: shannon leigh comeaux
 """
+#Import the required modules: requests & pyperclip
+#Have link to website copied to clipboard and ready to use.
 
-  
 import requests
 import pyperclip
 
-
+#I'm using a try block, incase the website is unavailable, inside function to retrieve quote
+#This will be called in the generate quote/user input function
 def get_quote():
     try:
         response = requests.get('https://zenquotes.io/api/random')
@@ -20,16 +22,19 @@ def get_quote():
         print(f"We've encountered an error: {e}")
         return None
 
+#Created a function to display the quote and the author's name
 def display_quote(quote_data):
     print(f"\nQuote: {quote_data['quote']}")
     print(f"Author: {quote_data['author']}")
 
+#Menu display function, exit
 def menu_display():
     print("\nGreetings! Enjoy receiving a lovely new quote any time you need it.")
     print("1. Receive your Quote and enjoy.")
     print("2. Save/Copy the quote to your clipboard and read at your leisure.")
     print("3. Exit Quotes")
 
+#Created final functions that calls the helper functions to generate and display quote.
 def generate_quote():
     current_quote = None
     while True:
@@ -55,3 +60,4 @@ def generate_quote():
             print("Please enter a valid command (1, 2, or 3).")
 
 generate_quote()
+
